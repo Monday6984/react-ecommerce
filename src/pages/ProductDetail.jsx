@@ -13,7 +13,9 @@ export default function ProductDetail() {
   useEffect(() => {
     async function loadProduct() {
       try {
-        const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+        const res = await fetch(
+          `https://api.escuelajs.co/api/v1/products/${id}`,
+        );
         if (!res.ok) throw new Error("Failed to fetch product");
         const data = await res.json();
         setProduct(data);
@@ -33,7 +35,7 @@ export default function ProductDetail() {
 
   return (
     <section className="product-detail">
-      <img src={product.image} alt={product.title} className="detail-img" />
+      <img src={product.images[0]} alt={product.title} className="detail-img" />
 
       <div className="detail-info">
         <h2>{product.title}</h2>

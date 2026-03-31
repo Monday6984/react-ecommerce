@@ -190,7 +190,7 @@ export default function ProductGrid({ addToCart }) {
   useEffect(() => {
     async function loadProducts() {
       try {
-        const res = await fetch("https://fakestoreapi.com/products");
+        const res = await fetch("https://api.escuelajs.co/api/v1/products");
         if (!res.ok) throw new Error("Failed to fetch products");
         const data = await res.json();
         setProducts(data);
@@ -208,7 +208,7 @@ export default function ProductGrid({ addToCart }) {
   useEffect(() => {
     async function loadCategories() {
       try {
-        const res = await fetch("https://fakestoreapi.com/products/categories");
+        const res = await fetch("https://api.escuelajs.co/api/v1/categories");
         const data = await res.json();
         setCategories(data);
       } catch (err) {
@@ -240,8 +240,8 @@ export default function ProductGrid({ addToCart }) {
         >
           <option value="">All Categories</option>
           {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat.toUpperCase()}
+            <option key={cat.slug} value={cat.name}>
+              {cat.name.toUpperCase()}
             </option>
           ))}
         </select>

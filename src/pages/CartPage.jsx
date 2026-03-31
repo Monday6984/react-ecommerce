@@ -12,10 +12,10 @@ export default function CartPage() {
 
       {cart.map((item) => (
         <div key={item.id} className="cart-item">
-          <img src={item.image} alt={item.name} className="cart-img" />
+          <img src={item.image} alt={item.title} className="cart-img" />
 
           <div className="cart-details">
-            <h3>{item.name}</h3>
+            <h3>{item.title}</h3>
             <p>${item.price.toFixed(2)}</p>
 
             <div className="quantity-controls">
