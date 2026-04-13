@@ -16,6 +16,15 @@ export default function CheckoutPage() {
 
   const [errors, setErrors] = useState({});
 
+  // fetch("http://localhost:5000/api/orders", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Authorization: `Bearer ${user.token}`,
+  //   },
+  //   body: JSON.stringify(order),
+  // });
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
@@ -43,6 +52,15 @@ export default function CheckoutPage() {
         total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
         createdAt: new Date().toISOString(),
       };
+
+      fetch("http://localhost:5000/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify(order),
+      });
 
       console.log("Order ready to send:", order);
 

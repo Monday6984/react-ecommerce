@@ -4,6 +4,7 @@ const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
   // Load user from LocalStorage
   useEffect(() => {
@@ -18,13 +19,28 @@ export function UserProvider({ children }) {
   }, [user]);
 
   function login(email, password) {
-    // Fake auth for now
-    setUser({ email });
+    fetch("http://localhost:5000/api/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => setUser(data));
   }
-
   function signup(email, password) {
-    // Fake signup
-    setUser({ email });
+    fetch("http://localhost:5000/api/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => setUser(data));
   }
 
   function logout() {

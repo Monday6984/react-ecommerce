@@ -11,8 +11,14 @@ export default function LoginPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    login(email, password);
-    navigate("/");
+    try {
+      login(email, password);
+
+      navigate("/");
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Login failed. Please check your credentials and try again.");
+    }
   }
 
   return (
